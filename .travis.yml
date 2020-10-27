@@ -16,7 +16,7 @@ install: true # Without that statement, Travis will run 'mvn install' on pom.xml
 script: 
   - hostname
   - whoami
-  - mvn -f pom.xml clean package
+  - mvn -f pom.xml -P standard-jdk clean package
   - ls -la target
 
 after_script:  
