@@ -75,7 +75,7 @@
       <artifactId>plugin</artifactId>
       <version>1.5</version>
       <scope>system</scope>
-      <systemPath>./lib</systemPath>
+      <systemPath>${plugin.jar.path}</systemPath>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
