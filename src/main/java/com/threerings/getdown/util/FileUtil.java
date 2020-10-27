@@ -9,7 +9,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarOutputStream;
-import java.util.jar.Pack200;
 import java.util.zip.GZIPInputStream;
 
 import com.samskivert.io.StreamUtil;
@@ -100,28 +99,6 @@ public class FileUtil extends com.samskivert.util.FileUtil
      */
     public static boolean unpackPacked200Jar (File packedJar, File target)
     {
-        InputStream packedJarIn = null;
-        FileOutputStream extractedJarFileOut = null;
-        JarOutputStream jarOutputStream = null;
-        try {
-            extractedJarFileOut = new FileOutputStream(target);
-            jarOutputStream = new JarOutputStream(extractedJarFileOut);
-            packedJarIn = new FileInputStream(packedJar);
-            if (packedJar.getName().endsWith(".gz")) {
-                packedJarIn = new GZIPInputStream(packedJarIn);
-            }
-            Pack200.Unpacker unpacker = Pack200.newUnpacker();
-            unpacker.unpack(packedJarIn, jarOutputStream);
-            return true;
-
-        } catch (IOException e) {
-            log.warning("Failed to unpack packed 200 jar file", "jar", packedJar, "error", e);
-            return false;
-
-        } finally {
-            StreamUtil.close(jarOutputStream);
-            StreamUtil.close(extractedJarFileOut);
-            StreamUtil.close(packedJarIn);
-        }
+    	throw new RuntimeException("Non utilizzare questo metodo: unpackPacked200Jar()");
     }
 }
