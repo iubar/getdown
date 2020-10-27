@@ -6,11 +6,10 @@ cache:
     - '$HOME/.m2/repository'
 
 jdk: # https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-java-scala-support
-  - openjdk7
-  - oraclejdk8
-  - openjdk10
-  - openjdk-ea
- 
+  - oraclejdk7
+  - openjdk9
+  - openjdk16
+  
 env:
   - TRAVIS_TAG=00.01 # see https://docs.travis-ci.com/user/environment-variables/
 install: true # Without that statement, Travis will run 'mvn install' on pom.xml before the script step.
