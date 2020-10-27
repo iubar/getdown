@@ -58,27 +58,25 @@
       <version>1.4</version>
       <optional>true</optional>
     </dependency>
-	<!-- https://mvnrepository.com/artifact/ca.beq/jregistrykey-win64 -->
-	<dependency>
-	    <groupId>ca.beq</groupId>
-	    <artifactId>jregistrykey-win64</artifactId>
-	    <version>1.4.5</version>
-	</dependency>
+    <dependency>
+      <groupId>jregistrykey</groupId>
+      <artifactId>jregistrykey</artifactId>
+      <version>1.0</version>
+      <optional>true</optional>
+    </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
       <version>1.7.1</version>
       <scope>provided</scope>
     </dependency>
-    <!--
     <dependency>
       <groupId>java</groupId>
       <artifactId>plugin</artifactId>
       <version>1.5</version>
       <scope>system</scope>
-      <systemPath>${plugin.jar.path}</systemPath>
+      <systemPath>./bin/lib</systemPath>
     </dependency>
-    -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
