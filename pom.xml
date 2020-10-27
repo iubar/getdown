@@ -45,6 +45,13 @@
     <url>https://github.com/threerings/getdown</url>
   </scm>
 
+  <repositories>
+    <repository>
+      <id>lib-repo</id>
+      <url>file://${basedir}/lib</url>
+    </repository>
+  </repositories>
+  
   <dependencies>
     <dependency>
       <groupId>com.samskivert</groupId>
