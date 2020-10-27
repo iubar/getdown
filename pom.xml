@@ -45,13 +45,6 @@
     <url>https://github.com/threerings/getdown</url>
   </scm>
 
-  <repositories>
-    <repository>
-      <id>lib-repo</id>
-      <url>file://${basedir}/lib</url>
-    </repository>
-  </repositories>
-
   <dependencies>
     <dependency>
       <groupId>com.samskivert</groupId>
@@ -111,8 +104,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>1.7</source>
+          <target>1.7</target>
           <fork>true</fork>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
