@@ -6,7 +6,6 @@ cache:
     - '$HOME/.m2/repository'
 
 jdk: # https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-java-scala-support
-  - oraclejdk7
   - openjdk9
   - openjdk16
   
