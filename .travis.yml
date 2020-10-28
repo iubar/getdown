@@ -32,9 +32,15 @@ before_deploy:
   # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   #- git tag $TRAVIS_TAG
   - echo "TRAVIS_TAG = ${TRAVIS_TAG}"
+  # delete local tag
   - git tag -d ${TRAVIS_TAG} || true # the tag may not exist
+  # delete remote tag
   - git push --delete origin ${TRAVIS_TAG} || true # the tag may not exist
-    
+  - git tag -d ${TRAVIS_TAG} || true # the tag may not exist
+  # alternative approach  
+  - git push origin :refs/tags/${TRAVIS_TAG} || true # the tag may not exist
+
+
 deploy: # see https://docs.travis-ci.com/user/deployment/releases/ 
   provider: releases
   api_key: ${GITHUB_OAUTH_TOKEN}
