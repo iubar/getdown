@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/iubar/getdown.svg?branch=getdown-1.5.1)](https://travis-ci.com/iubar/getdown)
+[![Build Status](https://travis-ci.com/iubar/getdown.svg?branch=getdown-1.5.x)](https://travis-ci.com/iubar/getdown)
 
 ## Getdown 1.5.1
 
