@@ -38,7 +38,7 @@ before_deploy:
   - git push --delete origin ${TRAVIS_TAG} || true # the tag may not exist
   - git tag -d ${TRAVIS_TAG} || true # the tag may not exist
   # alternative approach  
-  - git push origin :refs/tags/${TRAVIS_TAG} || true # the tag may not exist
+  # - git push origin :refs/tags/${TRAVIS_TAG} || true # the tag may not exist
 
 
 deploy: # see https://docs.travis-ci.com/user/deployment/releases/ 
