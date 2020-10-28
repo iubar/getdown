@@ -18,5 +18,3 @@ public class SysPropsTest {
     assert(runVers > 106000000);
   }
 }
-
-; // "(\\d+)\\.(\\d+)\\.(\\d+)(_\\d+)?.*"
