@@ -7,7 +7,7 @@ cache:
 
 jdk: # see https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-java-scala-support
   - openjdk9
-  - openjdk16
+  #- openjdk16
   
 env: # see https://docs.travis-ci.com/user/environment-variables/
   # - TRAVIS_TAG="getdown-1.5.1" 
