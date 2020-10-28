@@ -2,4 +2,9 @@
 
 ## Fork di Getdown 1.5
 
-Questo fork è stato eseguito perchè getdown-1.5 utilizza Pack200 ma non è più supportato a partire da java 14 (http://openjdk.java.net/jeps/367)
+Rispetto al progetto originale sono stati modificati
+
+1) Rimosso Pack200: non è più supportato a partire da java 14 (http://openjdk.java.net/jeps/367)
+2) Modificata espressione regolare per comando java in quanto venivano identificate versioni solo con trattini (es: 10.0.4_11) mentre quelle con il + non erano gestite (es: 9.0.4+11)
+
+
