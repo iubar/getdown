@@ -8,4 +8,5 @@
 
 2) Modificata espressione regolare per comando java in quanto venivano identificate versioni solo con trattini (es: 10.0.4_11) mentre quelle con il + non erano gestite (es: 9.0.4+11)
 
+3) File pom.xml riscritto
 
