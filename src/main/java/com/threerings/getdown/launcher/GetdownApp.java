@@ -51,14 +51,16 @@ public class GetdownApp
 
         // check for an app identifier in a sysprop and then via argv
         String appId = SysProps.appId();
+        log.debug("SysProps.appId(): " + appId);
         if (StringUtil.isBlank(appId) && aidx < args.size()) {
             appId = args.get(aidx++);
+            log.debug("appId: " + appId);
         }
-
+                 
         // pass along anything after that as app args
         String[] appArgs = (aidx >= args.size()) ? null :
             args.subList(aidx, args.size()).toArray(ArrayUtil.EMPTY_STRING);
-
+         
         // ensure a valid directory was supplied
         File appDir = new File(adarg);
         if (!appDir.exists() || !appDir.isDirectory()) {
@@ -74,6 +76,7 @@ public class GetdownApp
                     new BufferedOutputStream(new FileOutputStream(logFile)), true);
                 System.setOut(logOut);
                 System.setErr(logOut);
+                log.debug("Redirect output to logFile: " + logFile);
             } catch (IOException ioe) {
                 log.warning("Unable to redirect output to '" + logFile + "': " + ioe);
             }

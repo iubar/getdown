@@ -37,6 +37,9 @@ public class JDK14Logger implements Logger.Factory
                     }
                 }
             }
+            
+            // TODO: Andrea, read logging level
+            
         } catch (SecurityException se) {
             // running in sandbox; no custom logging; no problem!
         }

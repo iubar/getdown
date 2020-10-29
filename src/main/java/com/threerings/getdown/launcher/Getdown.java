@@ -49,15 +49,12 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ca.beq.util.win32.registry.RegistryKey;
-import ca.beq.util.win32.registry.RegistryValue;
-import ca.beq.util.win32.registry.RootKey;
-
 import com.samskivert.swing.util.SwingUtil;
 import com.samskivert.text.MessageUtil;
 import com.samskivert.util.RunAnywhere;
 import com.samskivert.util.StringUtil;
-
+import com.sun.jna.platform.win32.Advapi32Util;
+import com.sun.jna.platform.win32.WinReg;
 import com.threerings.getdown.data.Application.UpdateInterface.Step;
 import com.threerings.getdown.data.Application;
 import com.threerings.getdown.data.Resource;
@@ -238,7 +235,9 @@ public abstract class Getdown extends Thread
     protected boolean detectProxy ()
     {
         // we may already have a proxy configured
-        if (System.getProperty("http.proxyHost") != null) {
+    	String proxyHost = System.getProperty("http.proxyHost");
+        if (proxyHost != null) {
+        	log.debug("System http.proxyHost propertiy: " + proxyHost);
             return true;
         }
 
@@ -247,15 +246,17 @@ public abstract class Getdown extends Thread
             try {
                 String host = null, port = null;
                 boolean enabled = false;
-                RegistryKey.initialize();
-                RegistryKey r = new RegistryKey(RootKey.HKEY_CURRENT_USER, PROXY_REGISTRY);
-                for (Iterator<?> iter = r.values(); iter.hasNext(); ) {
-                    RegistryValue value = (RegistryValue)iter.next();
-                    if (value.getName().equals("ProxyEnable")) {
-                        enabled = value.getStringValue().equals("1");
+
+                
+                Map<String, Object> values = Advapi32Util.registryGetValues(WinReg.HKEY_CURRENT_USER, PROXY_REGISTRY);
+                for (Map.Entry<String, Object> entry : values.entrySet()) {
+                	Object value = entry.getValue();
+                	String key = entry.getKey() ;
+                    if (key.equals("ProxyEnable")) {
+                        enabled = value.toString().equals("1");
                     }
-                    if (value.getName().equals("ProxyServer")) {
-                        String strval = value.getStringValue();
+                    if (key.equals("ProxyServer")) {
+                        String strval = value.toString();
                         int cidx = strval.indexOf(":");
                         if (cidx != -1) {
                             port = strval.substring(cidx+1);
@@ -267,6 +268,7 @@ public abstract class Getdown extends Thread
 
                 if (enabled) {
                     setProxyProperties(host, port);
+                    log.debug("Proxy: " + host + ":" + port);
                     return true;
                 } else {
                     log.info("Detected no proxy settings in the registry.");
@@ -282,7 +284,10 @@ public abstract class Getdown extends Thread
         if (pfile.exists()) {
             try {
                 Map<String, Object> pconf = ConfigUtil.parseConfig(pfile, false);
-                setProxyProperties((String)pconf.get("host"), (String)pconf.get("port"));
+                String host = (String)pconf.get("host");
+                String port = (String)pconf.get("port");
+                setProxyProperties(host, port);
+                log.debug("Proxy: " + host + ":" + port);
                 return true;
             } catch (IOException ioe) {
                 log.warning("Failed to read '" + pfile + "': " + ioe);
@@ -323,6 +328,7 @@ public abstract class Getdown extends Thread
             log.info("No proxy appears to be needed.");
             try {
                 pfile.createNewFile();
+                log.debug("Proxy is needed");
             } catch (IOException ioe) {
                 log.warning("Failed to create blank proxy file '" + pfile + "': " + ioe);
             }
