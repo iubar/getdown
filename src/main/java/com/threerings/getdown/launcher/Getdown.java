@@ -196,6 +196,7 @@ public abstract class Getdown extends Thread
     {
         // we may already have a proxy configured
         if (System.getProperty("http.proxyHost") != null) {
+        	log.info("http.proxyHost detected: " + System.getProperty("http.proxyHost"));
             return true;
         }
 
@@ -239,7 +240,8 @@ public abstract class Getdown extends Thread
 
         // otherwise look for and read our proxy.txt file
         File pfile = _app.getLocalPath("proxy.txt");
-        if (pfile.exists()) {
+        if (pfile!=null && pfile.exists()) {
+        	log.info("Proxy config found on file: " + pfile);
             try {
                 Map<String, Object> pconf = ConfigUtil.parseConfig(pfile, false);
                 setProxyProperties((String)pconf.get("host"), (String)pconf.get("port"));
@@ -257,11 +259,13 @@ public abstract class Getdown extends Thread
         } catch (IOException ioe) {
             // no worries
         }
+        
         updateStatus("m.detecting_proxy");
 
         URL rurl = _app.getConfigResource().getRemote();
         try {
             // try to make a HEAD request for this URL
+        	 log.info("try to make a HEAD request for the URL: " + rurl);
             URLConnection conn = ConnectionUtil.open(rurl);
             if (conn instanceof HttpURLConnection) {
                 HttpURLConnection hcon = (HttpURLConnection)conn;
@@ -274,7 +278,9 @@ public abstract class Getdown extends Thread
                                     "something...", "url", rurl, "rsp", hcon.getResponseCode());
                     }
                 } finally {
-                    hcon.disconnect();
+                	if(hcon!=null) {
+                		hcon.disconnect();
+                	}
                 }
             }
 
@@ -289,8 +295,8 @@ public abstract class Getdown extends Thread
             return true;
 
         } catch (IOException ioe) {
-            log.info("Failed to HEAD " + rurl + ": " + ioe);
-            log.info("We probably need a proxy, but auto-detection failed.");
+            log.warning("Failed to HEAD " + rurl + ": " + ioe);
+            log.warning("We probably need a proxy, but auto-detection failed.");
         }
 
         // let the caller know that we need a proxy but can't detect it
