@@ -1726,7 +1726,12 @@ public class Application
     protected int _trackingId;
 
     protected String _javaVersionProp = "java.version";
-    protected String _javaVersionRegex = "((\\d+)-ea|(\\d+)\\.(\\d+)\\.(\\d+)([_+]\\d+)?(-b\\d+)?)"; // "(\\d+)\\.(\\d+)\\.(\\d+)(_\\d+)?.*"
+    
+    /**
+     * @see https://regex101.com/r/jkCR3j/4
+     */
+    protected String _javaVersionRegex = "((\\d+)-ea.*|(\\d+)\\.(\\d+)\\.(\\d+)([_+]\\d+)?(-b\\d+)?)"; // "(\\d+)\\.(\\d+)\\.(\\d+)(_\\d+)?.*"
+    
     protected long _javaMinVersion, _javaMaxVersion;
     protected boolean _javaExactVersionRequired;
     protected String _javaLocation;
