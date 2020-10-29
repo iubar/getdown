@@ -97,7 +97,7 @@ public class GetdownApp
         log.info("-- Cur dir: " + System.getProperty("user.dir"));
         log.info("---------------------------------------------");
 
-        if(!isHeadless2()) {
+      
         try {
             Getdown app = new Getdown(appDir, appId, null, null, appArgs) {
                 @Override
@@ -189,7 +189,7 @@ public class GetdownApp
             log.warning("main() failed.", e);
         }
         }
-    }
+ 
 
 	private static boolean isHeadless2() {
         if (GraphicsEnvironment.isHeadless()) {
