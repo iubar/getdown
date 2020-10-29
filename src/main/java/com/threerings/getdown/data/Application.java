@@ -540,7 +540,7 @@ public class Application
         vstr = (String)cdata.get("java_version_prop");
         if (vstr != null) _javaVersionProp = vstr;
         vstr = (String)cdata.get("java_version_regex");
-        if (vstr != null) _javaVersionRegex = vstr;
+//        if (vstr != null) _javaVersionRegex = vstr;
 
         // check to see if we require a particular JVM version and have a supplied JVM
         vstr = (String)cdata.get("java_version");
@@ -1726,7 +1726,12 @@ public class Application
     protected int _trackingId;
 
     protected String _javaVersionProp = "java.version";
-    protected String _javaVersionRegex = "((\\d+)-ea|(\\d+)\\.(\\d+)\\.(\\d+)([_+]\\d+)?(-b\\d+)?)"; // "(\\d+)\\.(\\d+)\\.(\\d+)(_\\d+)?.*"
+        
+	/**
+     * @see https://regex101.com/r/jkCR3j/6
+     */
+	public static final String _javaVersionRegex = "(\\d+)\\.(\\d+)\\.(\\d+)([_+]\\d+)?(-b\\d+)?"; // "(\\d+)\\.(\\d+)\\.(\\d+)(_\\d+)?.*"
+    
     protected long _javaMinVersion, _javaMaxVersion;
     protected boolean _javaExactVersionRequired;
     protected String _javaLocation;
