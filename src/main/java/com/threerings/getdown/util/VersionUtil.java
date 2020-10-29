@@ -70,6 +70,9 @@ public class VersionUtil
      */
     public static long parseJavaVersion (String versRegex, String versStr)
     {
+    	    	
+    	versStr = fixRegEx(versStr);
+    	
         Matcher m = Pattern.compile(versRegex).matcher(versStr);
         if (!m.matches()) return 0L;
 
@@ -83,7 +86,26 @@ public class VersionUtil
         return vers;
     }
 
-    /**
+    private static String fixRegEx(String versStr) {
+       	if(versStr.indexOf("-ea")>0) {
+    		versStr = versStr.split("-ea")[0];
+    	}
+    	int count = 0;
+    	for (int i = 0; i < versStr.length(); i++) {
+    	    if (versStr.charAt(i) == '.') {
+    	        count++;
+    	    }
+    	}
+    	if(count<1) {
+		versStr = versStr + ".0";
+    	}
+    	if(count<2) {
+		versStr = versStr + ".0";
+    	}
+    	return versStr;
+	}
+
+	/**
      * Reads and parses the version from the {@code release} file bundled with a JVM.
      */
     public static long readReleaseVersion (File relfile, String versRegex)
