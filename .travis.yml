@@ -22,7 +22,7 @@ script:
   - mvn --batch-mode -f pom.xml clean package
   - ls -lah target
 
-after_script:  
+after_script:
   - echo "Done"
   
 before_deploy:

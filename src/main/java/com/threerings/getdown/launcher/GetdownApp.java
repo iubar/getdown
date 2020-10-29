@@ -6,6 +6,9 @@
 package com.threerings.getdown.launcher;
 
 import java.awt.Container;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -94,6 +97,7 @@ public class GetdownApp
         log.info("-- Cur dir: " + System.getProperty("user.dir"));
         log.info("---------------------------------------------");
 
+        if(!isHeadless2()) {
         try {
             Getdown app = new Getdown(appDir, appId, null, null, appArgs) {
                 @Override
@@ -184,5 +188,39 @@ public class GetdownApp
         } catch (Exception e) {
             log.warning("main() failed.", e);
         }
+        }
     }
+
+	private static boolean isHeadless2() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return true;
+        }
+        try {
+            GraphicsDevice[] screenDevices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+            return screenDevices == null || screenDevices.length == 0;
+        } catch (HeadlessException e) {
+            e.printStackTrace();
+            return true;
+        }
+	}
+	private static boolean isHeadless() {
+		boolean headless = false;
+	    String nm = System.getProperty("java.awt.headless");
+
+	    if (nm == null) {
+	        /* No need to ask for DISPLAY when run in a browser */
+	        if (System.getProperty("javaplugin.version") != null) {
+	            headless = Boolean.FALSE;
+	        } else {
+	            String osName = System.getProperty("os.name");
+	            headless =  Boolean.valueOf(("Linux".equals(osName) || "SunOS".equals(osName)) &&
+	                                (System.getenv("DISPLAY") == null));
+	        }
+	    } else if (nm.equals("true")) {
+	        headless = Boolean.TRUE;
+	    } else {
+	        headless = Boolean.FALSE;
+	    }
+	    return headless;
+	}
 }
