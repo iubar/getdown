@@ -13,6 +13,7 @@ import java.security.Signature;
 
 import org.apache.commons.codec.binary.Base64;
 
+
 /**
  * Produces a signed hash of the appbase, appname, and image path to ensure that signed copies of
  * Getdown are not hijacked to run malicious code.
