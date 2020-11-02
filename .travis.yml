@@ -11,7 +11,7 @@ jdk: # see https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-
   - openjdk16
   
 env: # see https://docs.travis-ci.com/user/environment-variables/
-  - TRAVIS_TAG="getdown-1.8.1"
+  - TRAVIS_TAG="getdown-1.8.6"
   
 install: true # Without that statement, Travis will run 'mvn install' on pom.xml before the script step.
 
