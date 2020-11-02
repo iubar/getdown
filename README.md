@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/iubar/getdown.svg?branch=getdown-1.8.x)](https://travis-ci.com/iubar/getdown)
+
 ## What is it?
 
 Getdown (yes, it's the funky stuff) is a system for deploying Java applications to end-user
