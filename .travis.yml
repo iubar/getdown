@@ -19,7 +19,8 @@ script:
   - hostname
   - whoami
   - mvn --batch-mode -f pom.xml clean package
-  - ls -lah target
+  # - ls -lah target # the ant task didn't create that folder
+  - ls -lah ant/target
 
 after_script:
   - echo "Done"
@@ -40,7 +41,8 @@ before_deploy:
   - git tag -d ${TRAVIS_TAG} || true # the tag may not exist
   # (alternative approach)
   # - git push origin :refs/tags/${TRAVIS_TAG} || true # the tag may not exist
-  - mv target/getdown-jar-with-dependencies.jar target/${TRAVIS_TAG}-jar-with-dependencies.jar
+  - mkdir target
+  - mv ant/target/getdown-ant-1.8.6.jar target/${TRAVIS_TAG}-jar-with-dependencies.jar
 
 
 deploy: # see https://docs.travis-ci.com/user/deployment/releases/ 
