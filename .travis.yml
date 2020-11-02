@@ -1,11 +1,54 @@
+dist: bionic # https://docs.travis-ci.com/user/reference/bionic/
 language: java
-sudo: false
-script: "mvn -B clean verify"
 
 cache:
   directories:
     - '$HOME/.m2/repository'
 
-jdk:
-  - openjdk7
-  - oraclejdk8
+jdk: # see https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-java-scala-support
+  - openjdk9
+  - openjdk11
+  - openjdk16
+  
+env: # see https://docs.travis-ci.com/user/environment-variables/
+  - TRAVIS_TAG="getdown-1.8.1"
+  
+install: true # Without that statement, Travis will run 'mvn install' on pom.xml before the script step.
+
+script: 
+  - hostname
+  - whoami
+  - mvn --batch-mode -f pom.xml clean package
+  - ls -lah target
+
+after_script:
+  - echo "Done"
+  
+before_deploy:
+  # see https://docs.travis-ci.com/user/deployment/releases/#overwrite-existing-files-on-the-release  
+  # Set up git user name and tag this commit
+  # - git config --local user.name ${GIT_USER_NAME}
+  # - git config --local user.email ${GIT_USER_EMAIL}
+  # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  #- git tag $TRAVIS_TAG
+  - echo "TRAVIS_TAG = ${TRAVIS_TAG}"
+  # Delete the tag (see http://dev.topheman.com/continuous-deployment-with-travis-ci/)
+  # (delete local tag)
+  - git tag -d ${TRAVIS_TAG} || true # the tag may not exist
+  # (delete remote tag)
+  - git push --delete origin ${TRAVIS_TAG} || true # the tag may not exist
+  - git tag -d ${TRAVIS_TAG} || true # the tag may not exist
+  # (alternative approach)
+  # - git push origin :refs/tags/${TRAVIS_TAG} || true # the tag may not exist
+  - mv target/getdown-jar-with-dependencies.jar target/${TRAVIS_TAG}-jar-with-dependencies.jar
+
+
+deploy: # see https://docs.travis-ci.com/user/deployment/releases/ 
+  provider: releases
+  api_key: ${GITHUB_OAUTH_TOKEN}
+  file: target/${TRAVIS_TAG}-jar-with-dependencies.jar
+  overwrite: true
+  skip_cleanup: true # otherwise Travis CI will delete all the files created during the build, which will probably delete what you are trying to upload.
+  on:
+    branch: getdown-1.8.x # see https://docs.travis-ci.com/user/deployment#Conditional-Releases-with-on
+
