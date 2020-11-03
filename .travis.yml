@@ -50,9 +50,9 @@ deploy: # see https://docs.travis-ci.com/user/deployment/releases/
   provider: releases
   api_key: ${GITHUB_OAUTH_TOKEN}
   file: 
-    - launcher/target/getdown-launcher-1.8.6.jar
-    - ant/target/getdown-ant-1.8.6.jar
-    - core/target/getdown-core-1.8.6.jar
+    - launcher/target/getdown-launcher-1.8.61.jar
+    - ant/target/getdown-ant-1.8.61.jar
+    - core/target/getdown-core-1.8.61.jar
   overwrite: true
   skip_cleanup: true # otherwise Travis CI will delete all the files created during the build, which will probably delete what you are trying to upload.
   on:
