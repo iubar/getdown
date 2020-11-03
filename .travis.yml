@@ -7,7 +7,7 @@ cache:
 
 jdk: # see https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-java-scala-support
   - openjdk9
-  # - openjdk11 # ProGuard: Error, unsupported version number [55.0] (maximum 54.0, Java 10)))
+  - openjdk11 # ProGuard: Error, unsupported version number [55.0] (maximum 54.0, Java 10)))
   # - openjdk16 # see error above
   
 env: # see https://docs.travis-ci.com/user/environment-variables/
