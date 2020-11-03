@@ -2,7 +2,7 @@
 
 ## 1.5.1 - November 3, 2020
 
-* Fixed crash on Java 16. The [Pack200](https://en.wikipedia.org/wiki/Pack200) support was removed because that class is no more included in the java.uti package from java 14.
+* Fixed crash on Java 16. The [Pack200](https://en.wikipedia.org/wiki/Pack200) support was removed because that class is no more included in the java.uti package from java 14 (see also the [issues 248](https://github.com/threerings/getdown/issues/248)).
 
 * Removed the obsolete support for running Getdown in a signed applet. Applets are no longer supported by any widely used browser.
 
@@ -12,5 +12,5 @@
 
 * Maven config was simplified (pom.xml)
 
-* Proguard support removed
+* Proguard support was removed
 
