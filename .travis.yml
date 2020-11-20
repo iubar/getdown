@@ -11,7 +11,8 @@ jdk: # see https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-
   # - openjdk16 # error: package Pack200 does not exist
   
 env: # see https://docs.travis-ci.com/user/environment-variables/
-  - TRAVIS_TAG="getdown-1.8.61"
+  - TRAVIS_TAG_VERSION="1.8.6.1"
+  - TRAVIS_TAG="getdown-${TRAVIS_TAG_VERSION}"
   
 install: true # Without that statement, Travis will run 'mvn install' on pom.xml before the script step.
 
@@ -50,9 +51,9 @@ deploy: # see https://docs.travis-ci.com/user/deployment/releases/
   provider: releases
   api_key: ${GITHUB_OAUTH_TOKEN}
   file: 
-    - launcher/target/getdown-launcher-1.8.61.jar
-    - ant/target/getdown-ant-1.8.61.jar
-    - core/target/getdown-core-1.8.61.jar
+    - launcher/target/getdown-launcher-${TRAVIS_TAG_VERSION}.jar
+    - ant/target/getdown-ant-${TRAVIS_TAG_VERSION}.jar
+    - core/target/getdown-core-${TRAVIS_TAG_VERSION}.jar
   overwrite: true
   skip_cleanup: true # otherwise Travis CI will delete all the files created during the build, which will probably delete what you are trying to upload.
   on:
