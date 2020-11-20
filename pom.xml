@@ -9,7 +9,6 @@
 
   <groupId>com.threerings.getdown</groupId>
   <artifactId>getdown</artifactId>
-  <packaging>pom</packaging>
   <version>1.8.6.1</version>
 
   <name>getdown</name>
