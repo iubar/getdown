@@ -1730,7 +1730,7 @@ public class Application
 	/**
      * @see https://regex101.com/r/aJ8KlI/2
      */
-	public static final String _javaVersionRegex = "(\\d+)\\.(\\d+)\\.(\\d+)([_+]\\d+)?(-\\d+)?(-b\\d+)?";
+	public static final String _javaVersionRegex = "(\\d+)\\.(\\d+)\\.(\\d+)([_\\+]\\d+)?(-\\d+)?(-b\\d+)?"; // attenzione il carattere "+" deve essere critto come "\\+"
     
     protected long _javaMinVersion, _javaMaxVersion;
     protected boolean _javaExactVersionRequired;
