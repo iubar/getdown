@@ -12,10 +12,10 @@ public class SysPropsTest {
 	
 
   @Test public void testParseJavaVersion () {
-    long vers = SysProps.parseJavaVersion("java.version", Application._javaVersionRegex); // "(\\d+)\\.(\\d+)\\.(\\d+)(_\\d+)?"
+    long vers = SysProps.parseJavaVersion("java.version", Application._javaVersionRegex);
     assert(vers > 1060000);
 
-    long runVers = SysProps.parseJavaVersion("java.runtime.version", Application._javaVersionRegex); // "(\\d+)\\.(\\d+)\\.(\\d+)(_\\d+)?(-b\\d+)?"
+    long runVers = SysProps.parseJavaVersion("java.runtime.version", Application._javaVersionRegex);
     assert(runVers > 106000000);
   }
   

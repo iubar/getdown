@@ -1728,9 +1728,9 @@ public class Application
     protected String _javaVersionProp = "java.version";
         
 	/**
-     * @see https://regex101.com/r/jkCR3j/6
+     * @see https://regex101.com/r/aJ8KlI/2
      */
-	public static final String _javaVersionRegex = "(\\d+)\\.(\\d+)\\.(\\d+)([_+]\\d+)?(-b\\d+)?"; // "(\\d+)\\.(\\d+)\\.(\\d+)(_\\d+)?.*"
+	public static final String _javaVersionRegex = "(\\d+)\\.(\\d+)\\.(\\d+)([_+]\\d+)?(-\\d+)?(-b\\d+)?";
     
     protected long _javaMinVersion, _javaMaxVersion;
     protected boolean _javaExactVersionRequired;

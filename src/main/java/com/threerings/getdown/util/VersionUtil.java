@@ -68,9 +68,7 @@ public class VersionUtil
      * Parses {@code versStr} using {@code versRegex} into a (long) integer version number.
      * @see SysProps#parseJavaVersion
      */
-    public static long parseJavaVersion (String versRegex, String versStr)
-    {
-    	    	
+    public static long parseJavaVersion (String versRegex, String versStr){   	
     	versStr = fixRegEx(versStr);
     	
         Matcher m = Pattern.compile(versRegex).matcher(versStr);
@@ -86,21 +84,31 @@ public class VersionUtil
         return vers;
     }
 
+    /**
+     * Trasforma l'argomento in una stringa compatibile con l'espressione regolare
+     * 
+     */
     private static String fixRegEx(String versStr) {
        	if(versStr.indexOf("-ea")>0) {
     		versStr = versStr.split("-ea")[0];
-    	}
+    	}       	
+       	// Per semplificare l'espressione regolare potrei:       	
+       	else if(versStr.indexOf("+")>0) {
+       		versStr = versStr.split("+")[0];
+       	} else if(versStr.indexOf("_")>0) {{
+       		versStr = versStr.split("_")[0];
+       	}
+       	       	
     	int count = 0;
     	for (int i = 0; i < versStr.length(); i++) {
     	    if (versStr.charAt(i) == '.') {
     	        count++;
     	    }
     	}
-    	if(count<1) {
-		versStr = versStr + ".0";
-    	}
-    	if(count<2) {
-		versStr = versStr + ".0";
+    	if(count==0) {
+    		versStr = versStr + ".0.0";
+    	}else if(count==1) {
+    		versStr = versStr + ".0";
     	}
     	return versStr;
 	}
