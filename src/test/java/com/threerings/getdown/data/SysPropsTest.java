@@ -10,8 +10,7 @@ import org.junit.*;
 public class SysPropsTest {
 	
 	
-
-  @Test public void testParseJavaVersion () {
+  @Test public void testParseJavaVersion() {
     long vers = SysProps.parseJavaVersion("java.version", Application._javaVersionRegex);
     assert(vers > 1060000);
 
