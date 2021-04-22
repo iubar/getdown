@@ -95,7 +95,7 @@ public class VersionUtil
        	// Per semplificare l'espressione regolare potrei:       	
        	else if(versStr.indexOf("+")>0) {
        		versStr = versStr.split("+")[0];
-       	} else if(versStr.indexOf("_")>0) {{
+       	} else if(versStr.indexOf("_")>0) {
        		versStr = versStr.split("_")[0];
        	}
        	       	
