@@ -1,17 +1,5 @@
 package com.threerings.getdown.launcher;
 
-import static com.threerings.getdown.Log.log;
-
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
-
-import com.samskivert.util.RunAnywhere;
-//import com.sun.jna.platform.win32.Advapi32Util;
-//import com.sun.jna.platform.win32.WinNT;
-//import com.sun.jna.platform.win32.WinReg;
- 
-
 public class RegistryTest {
 	
     protected static final String PROXY_REGISTRY = "SOFTWARE\\Iubar\\Paghe Open (full)";    

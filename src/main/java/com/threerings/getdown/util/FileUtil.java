@@ -5,15 +5,18 @@
 
 package com.threerings.getdown.util;
 
-import java.io.*;
+import static com.threerings.getdown.Log.log;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.JarOutputStream;
-import java.util.zip.GZIPInputStream;
 
 import com.samskivert.io.StreamUtil;
-
-import static com.threerings.getdown.Log.log;
 
 /**
  * File related utilities.
