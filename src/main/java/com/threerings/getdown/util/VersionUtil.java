@@ -68,27 +68,34 @@ public class VersionUtil
      * Parses {@code versStr} using {@code versRegex} into a (long) integer version number.
      * @see SysProps#parseJavaVersion
      */
-    public static long parseJavaVersion (String versRegex, String versStr)
-    {
-    	    	
+    public static long parseJavaVersion (String versRegex, String versStr){   	
     	versStr = fixRegEx(versStr);
-    	
         Matcher m = Pattern.compile(versRegex).matcher(versStr);
         if (!m.matches()) return 0L;
-
+ 
         long vers = 0L;
-        for (int ii = 1; ii <= m.groupCount(); ii++) {
+        for (int ii = 1; ii < m.groupCount(); ii++) {
             String valstr = m.group(ii);
+            
             int value = (valstr == null) ? 0 : parseInt(valstr);
             vers *= 100;
             vers += value;
+         
         }
         return vers;
     }
 
+    /**
+     * Trasforma l'argomento in una stringa compatibile con l'espressione regolare
+     * 
+     */
     private static String fixRegEx(String versStr) {
        	if(versStr.indexOf("-ea")>0) {
     		versStr = versStr.split("-ea")[0];
+    	}else if(versStr.indexOf("+")>0) {
+    		versStr = versStr.split("\\+")[0];  // split() richiede una stringa che rappresenti una regex, quindi del carattere "+" va effettuato l'escape   		
+    	}else if(versStr.indexOf("-")>0) {
+    		versStr = versStr.split("-")[0];
     	}
     	int count = 0;
     	for (int i = 0; i < versStr.length(); i++) {
@@ -96,11 +103,10 @@ public class VersionUtil
     	        count++;
     	    }
     	}
-    	if(count<1) {
-		versStr = versStr + ".0";
-    	}
-    	if(count<2) {
-		versStr = versStr + ".0";
+    	if(count==0) {
+    		versStr = versStr + ".0.0";
+    	}else if(count==1) {
+    		versStr = versStr + ".0";
     	}
     	return versStr;
 	}

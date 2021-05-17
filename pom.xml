@@ -49,6 +49,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.source.version>1.7</jdk.source.version>
 		<jdk.target.version>${jdk.source.version}</jdk.target.version>
+		<maven-assembly-mainclass>com.threerings.getdown.launcher.GetdownApp</maven-assembly-mainclass>
 	</properties>
   
   <dependencies>
@@ -148,7 +149,7 @@
 							<!-- <outputDirectory>build/maven/${pom.artifactId}/target</outputDirectory> -->
 							<archive>
 								<manifest>
-									<mainClass>com.threerings.getdown.launcher.GetdownApp</mainClass>
+									<mainClass>${maven-assembly-mainclass}</mainClass>
 									<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 								</manifest>
 							</archive>
