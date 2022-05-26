@@ -1,11 +1,11 @@
-dist: bionic # https://docs.travis-ci.com/user/reference/bionic/
+dist: focal # https://docs.travis-ci.com/user/reference/focal
 language: java
 
 cache:
   directories:
     - '$HOME/.m2/repository'
 
-jdk: # see https://docs.travis-ci.com/user/reference/bionic/#jvm-clojure-groovy-java-scala-support 
+jdk: # see https://docs.travis-ci.com/user/reference/focal/#jvm-clojure-groovy-java-scala-support 
   # - openjdk7
   - openjdk8
   - openjdk9
