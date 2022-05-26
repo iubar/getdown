@@ -6,8 +6,7 @@ cache:
     - '$HOME/.m2/repository'
 
 jdk: # see https://docs.travis-ci.com/user/reference/focal/#jvm-clojure-groovy-java-scala-support 
-  # - openjdk7
-  - openjdk8
+  # - openjdk8
   - openjdk9
   - openjdk11
   - openjdk16
