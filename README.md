@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/iubar/getdown.svg?branch=getdown-1.5.x)](https://travis-ci.com/iubar/getdown)
+[![Build Status](https://app.travis-ci.com/iubar/getdown.svg?branch=getdown-1.5.x)](https://app.travis-ci.com/iubar/getdown)
 
 ## What is it?
 
