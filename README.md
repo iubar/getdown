@@ -1,4 +1,6 @@
-[![Build Status](https://app.travis-ci.com/iubar/getdown.svg?branch=getdown-1.5.x)](https://app.travis-ci.com/iubar/getdown)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/iubar/getdown/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iubar/getdown/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/iubar/getdown/tree/getdown-1.5.x.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iubar/getdown/tree/getdown-1.5.x)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/iubar/getdown/tree/getdown-1.8.x.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iubar/getdown/tree/getdown-1.8.x)
 
 ## What is it?
 
