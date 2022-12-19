@@ -37,9 +37,8 @@ jobs:
           command: |
             mvn -Dmaven.test.skip=true clean package
             mkdir artifacts
-            ls -la target || ls -la
-            #cp target/*.jar artifacts/          
-            cp /home/circleci/repo/ant/target/*.jar artifacts/
+            ls -la target
+            cp target/*.jar artifacts/
       - run:
           name: Outdated
           command: mvn versions:display-dependency-updates
