@@ -1,3 +1,4 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/iubar/getdown/tree/getdown-1.8.x.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iubar/getdown/tree/getdown-1.8.x)
 ## What is it?
 
 Getdown (yes, it's the funky stuff) is a system for deploying Java applications to end-user
