@@ -31,7 +31,7 @@ jobs:
           command: |
             java --version
             mvn -v
-            mvn -DUSER=Borgo test
+            mvn test
       - run:
           name: Packaging
           command: |
