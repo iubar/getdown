@@ -40,9 +40,16 @@ jobs:
             ls -la target || ls -la
             #cp target/*.jar artifacts/          
             cp /home/circleci/repo/ant/target/*.jar artifacts/
+            ls -la artifacts
       - run:
           name: Outdated
           command: mvn versions:display-dependency-updates
+      - store_artifacts:
+          path: ./core/target/getdown-core-1.8.7.1.jar 
+      - store_artifacts:
+          path: ./launcher/target/getdown-launcher-1.8.7.1.jar
+      - store_artifacts:
+          path: ./ant/target/getdown-ant-1.8.7.1.jar
   publish-github-release:
     docker:
       - image: circleci/golang:1.17
@@ -50,8 +57,9 @@ jobs:
       - attach_workspace:
           at: ./artifacts
       - run:
-          name: "Publish Release on GitHub"
+          name: "Publish Release on GitHub" # see https://circleci.com/blog/publishing-to-github-releases-via-circleci/
           command: |
+            ls -la artifacts
             # see https://github.com/tcnksm/ghr/releases
             go install github.com/tcnksm/ghr@latest
             # VERSION=$(my-binary --version)
