@@ -24,7 +24,7 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: cimg/openjdk:11.0
-    enviroment:
+    environment:
       APP_VER: 1.8.7.1
     steps:
       - checkout
@@ -63,7 +63,7 @@ jobs:
   publish-github-release:
     docker:
       - image: circleci/golang:1.17
-    enviroment:
+    environment:
       APP_VER: 1.8.7.1     
     steps:
       - attach_workspace:
