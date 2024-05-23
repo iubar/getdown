@@ -25,7 +25,7 @@ jobs:
     docker:
       - image: cimg/openjdk:11.0
     enviroment:
-      APP_VER: "1.8.7.1"
+      APP_VER: 1.8.7.1
     steps:
       - checkout
       - attach_workspace:
@@ -55,16 +55,16 @@ jobs:
           paths:
             - artifacts         
       - store_artifacts:
-          path: ./core/target/getdown-core-{$APP_VER}.jar 
+          path: ./core/target/getdown-core-${APP_VER}.jar 
       - store_artifacts:
-          path: ./launcher/target/getdown-launcher-{$APP_VER}.jar
+          path: ./launcher/target/getdown-launcher-${APP_VER}.jar
       - store_artifacts:
-          path: ./ant/target/getdown-ant-{$APP_VER}.jar
+          path: ./ant/target/getdown-ant-${APP_VER}.jar
   publish-github-release:
     docker:
       - image: circleci/golang:1.17
     enviroment:
-      APP_VER: "1.8.7.1"      
+      APP_VER: 1.8.7.1     
     steps:
       - attach_workspace:
           at: .
@@ -77,7 +77,7 @@ jobs:
             # VERSION=$(my-binary --version)
             # VERSION=$(xmlstarlet sel -N mvn='http://maven.apache.org/POM/4.0.0' -t -m '/mvn:project/mvn:version' -v . -n <pom.xml)
             # VERSION=${CIRCLE_BRANCH}-release # is "getdown-1.8.x" 
-            VERSION={$APP_VER}
+            VERSION=${APP_VER}
             # see https://circleci.com/docs/variables/
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
 workflows:
